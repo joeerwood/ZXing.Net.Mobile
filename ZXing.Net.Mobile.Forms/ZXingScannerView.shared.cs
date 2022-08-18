@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows.Input;
+#if !NET6_0
 using Xamarin.Forms;
+#endif
 using ZXing.Mobile;
 
 namespace ZXing.Net.Mobile.Forms

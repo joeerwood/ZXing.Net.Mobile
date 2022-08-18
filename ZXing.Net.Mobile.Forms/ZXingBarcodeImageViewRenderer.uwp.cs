@@ -1,19 +1,29 @@
 ﻿using System;
+#if NET6_0
+using Microsoft.Maui.Controls.Compatibility;
+using Microsoft.Maui.Controls.Compatibility.Platform.UWP;
+using Microsoft.Maui.Controls.Platform;
+using WINCON = Microsoft.UI.Xaml.Controls;
+#else
 using Xamarin.Forms;
+using Xamarin.Forms.Platform.UWP;
+using Xamarin.Forms.Internals;
+using WINCON = Windows.UI.Xaml.Controls;
+#endif
 using ZXing.Net.Mobile.Forms;
 using ZXing.Net.Mobile.Forms.WindowsUniversal;
-using Xamarin.Forms.Platform.UWP;
 using System.ComponentModel;
 using System.Reflection;
 using ZXing.Mobile;
 using System.Threading.Tasks;
-using Xamarin.Forms.Internals;
 
 [assembly: ExportRenderer(typeof(ZXingBarcodeImageView), typeof(ZXingBarcodeImageViewRenderer))]
 namespace ZXing.Net.Mobile.Forms.WindowsUniversal
 {
+#if !NET6_0
 	[Preserve]
-	public class ZXingBarcodeImageViewRenderer : ViewRenderer<ZXingBarcodeImageView, Windows.UI.Xaml.Controls.Image>
+#endif
+	public class ZXingBarcodeImageViewRenderer : ViewRenderer<ZXingBarcodeImageView, WINCON.Image>
 	{
 		public static void Init()
 		{
@@ -21,7 +31,7 @@ namespace ZXing.Net.Mobile.Forms.WindowsUniversal
 		}
 
 		ZXingBarcodeImageView formsView;
-		Windows.UI.Xaml.Controls.Image imageView;
+        WINCON.Image imageView;
 
 		protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
 		{
@@ -39,7 +49,7 @@ namespace ZXing.Net.Mobile.Forms.WindowsUniversal
 
 			if (formsView != null && imageView == null)
 			{
-				imageView = new Windows.UI.Xaml.Controls.Image();
+				imageView = new WINCON.Image();
 				SetNativeControl(imageView);
 			}
 

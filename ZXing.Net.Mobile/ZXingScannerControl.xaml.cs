@@ -15,13 +15,18 @@ using Windows.Media.Devices;
 using Windows.Media.MediaProperties;
 using Windows.System.Display;
 using Windows.UI.Core;
+#if WINDOWS_UWP
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
+#else
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Media;
+#endif
+
 using ZXing.Mobile;
 
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236

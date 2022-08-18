@@ -7,10 +7,19 @@ using Android.OS;
 using ZXing;
 using ZXing.Mobile;
 using System;
+#if NET6_0
+using Microsoft.Maui.ApplicationModel;
+#else
+using Xamarin.Essentials;
+#endif
 
+#if NET6_0
+namespace Sample.Net6
+#else
 namespace Sample.Android
+#endif
 {
-	[Activity(Label = "ZXing.Net.Mobile", MainLauncher = true, Theme = "@style/Theme.AppCompat.Light", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden)]
+    [Activity(Label = "ZXing.Net.Mobile", MainLauncher = true, Theme = "@style/Theme.AppCompat.Light", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden)]
 	public class Activity1 : AndroidX.AppCompat.App.AppCompatActivity
 	{
 		Button buttonScanCustomView;
@@ -25,7 +34,7 @@ namespace Sample.Android
 		{
 			base.OnCreate(bundle);
 
-			Xamarin.Essentials.Platform.Init(Application);
+			Platform.Init(Application);
 
 			// Set our view from the "main" layout resource
 			SetContentView(Resource.Layout.Main);
@@ -120,7 +129,7 @@ namespace Sample.Android
 
 		public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
 		{
-			Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+			Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
 			base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 		}

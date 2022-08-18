@@ -1,5 +1,7 @@
 ﻿using System;
+#if !NET6_0
 using Xamarin.Forms;
+#endif
 using System.Threading.Tasks;
 using ZXing.Net.Mobile.Forms;
 

@@ -1,0 +1,66 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net6.0;net6.0-android;net6.0-ios;net6.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net6.0-windows10.0.19041.0</TargetFrameworks>
+		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
+		 <TargetFrameworks>$(TargetFrameworks);net6.0-tizen</TargetFrameworks> 
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>enable</ImplicitUsings>
+
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+		<AssemblyName>ZXing.Net6.Mobile.Forms</AssemblyName>
+		<RootNamespace>ZXing.Net.Mobile.Forms</RootNamespace>
+		<EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\Art\ZXing.Net.Mobile-Icon.png" PackagePath="icon.png" Pack="true" />
+		<Compile Include="..\ZXing.Net.Mobile.Forms\ZXingDefaultOverlay.shared.cs" Link="ZXingDefaultOverlay.shared.cs" />
+		<Compile Include="..\ZXing.Net.Mobile.Forms\ZXingScannerPage.shared.cs" Link="ZXingScannerPage.shared.cs" />
+		<Compile Include="..\ZXing.Net.Mobile.Forms\ZXingScannerView.shared.cs" Link="ZXingScannerView.shared.cs" />
+		<Compile Include="..\ZXing.Net.Mobile.Forms\ZXingBarcodeImageView.shared.cs" Link="ZXingBarcodeImageView.shared.cs" />
+	</ItemGroup>
+	<ItemGroup Condition=" $(TargetFramework.StartsWith('net6.0-android')) ">
+		<Compile Include="..\ZXing.Net.Mobile.Forms\PermissionsHandler.android.cs" Link="PermissionsHandler.android.cs" />
+		<Compile Include="..\ZXing.Net.Mobile.Forms\Platform.android.cs" Link="Platform.android.cs" />
+		<Compile Include="..\ZXing.Net.Mobile.Forms\ZXingBarcodeImageViewRenderer.android.cs" Link="ZXingBarcodeImageViewRenderer.android.cs" />
+		<Compile Include="..\ZXing.Net.Mobile.Forms\ZXingScannerViewRenderer.android.cs" Link="ZXingScannerViewRenderer.android.cs" />
+		<AndroidResource Include="Resources\xml\*.xml" />
+		<PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.4.2.1" />
+	</ItemGroup>
+	<ItemGroup Condition=" $(TargetFramework.StartsWith('net6.0-ios')) ">
+		<Compile Include="..\ZXing.Net.Mobile.Forms\Platform.ios.cs" Link="Platform.ios.cs" />
+		<Compile Include="..\ZXing.Net.Mobile.Forms\ZXingBarcodeImageViewRenderer.ios.cs" Link="ZXingBarcodeImageViewRenderer.ios.cs" />
+		<Compile Include="..\ZXing.Net.Mobile.Forms\ZXingScannerViewRenderer.ios.cs" Link="ZXingScannerViewRenderer.ios.cs" />
+	</ItemGroup>
+	<ItemGroup Condition=" $(TargetFramework.StartsWith('net6.0-maccatalyst')) ">
+		<Compile Include="..\ZXing.Net.Mobile.Forms\Platform.macos.cs" Link="Platform.macos.cs" />
+		<Compile Include="..\ZXing.Net.Mobile.Forms\ZXingBarcodeImageViewRenderer.macos.cs" Link="ZXingBarcodeImageViewRenderer.macos.cs" />
+	</ItemGroup>
+	<ItemGroup Condition=" $(TargetFramework.StartsWith('net6.0-tizen')) ">
+		<Compile Include="..\ZXing.Net.Mobile.Forms\Platform.tizen.cs" Link="Platform.tizen.cs" />
+		<Compile Include="..\ZXing.Net.Mobile.Forms\ZXingBarcodeImageViewRenderer.tizen.cs" Link="ZXingBarcodeImageViewRenderer.tizen.cs" />
+		<Compile Include="..\ZXing.Net.Mobile.Forms\ZXingScannerViewRenderer.tizen.cs" Link="ZXingScannerViewRenderer.tizen.cs" />
+	</ItemGroup>
+	<ItemGroup Condition=" $(TargetFramework.StartsWith('net6.0-windows10.0')) ">
+		<Compile Include="..\ZXing.Net.Mobile.Forms\Platform.uwp.cs" Link="Platform.uwp.cs" />
+		<Compile Include="..\ZXing.Net.Mobile.Forms\Platform.uwp.cs" Link="Platform.uwp.cs" />
+		<Compile Include="..\ZXing.Net.Mobile.Forms\ZXingBarcodeImageViewRenderer.uwp.cs" Link="ZXingBarcodeImageViewRenderer.uwp.cs" />
+		<Compile Include="..\ZXing.Net.Mobile.Forms\ZXingScannerViewRenderer.uwp.cs" Link="ZXingScannerViewRenderer.uwp.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="ZXing.Net" Version="0.16.8" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\ZXing.Net6.Mobile\ZXing.Net6.Mobile.csproj" />
+	</ItemGroup>
+</Project>

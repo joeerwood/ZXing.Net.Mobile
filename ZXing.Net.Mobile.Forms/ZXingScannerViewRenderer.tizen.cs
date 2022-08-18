@@ -1,7 +1,15 @@
 using System;
 using System.ComponentModel;
+#if NET6_0
+using Microsoft.Maui.Controls.Compatibility;
+using Microsoft.Maui.Controls.Compatibility.Platform.Tizen;
+using Microsoft.Maui.Controls.Platform;
+using UI = Microsoft.Maui.Controls.Compatibility;
+#else
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Tizen;
+using UI = Xamarin.Forms;
+#endif
 using ZXing.Mobile;
 using ZXing.Net.Mobile.Forms;
 using ZXing.Net.Mobile.Forms.Tizen;
@@ -45,7 +53,7 @@ namespace ZXing.Net.Mobile.Forms.Tizen
 					}
 				};
 				
-				zxingWindow = new ZXing.Mobile.ZXingMediaView(Xamarin.Forms.Forms.NativeParent);
+				zxingWindow = new ZXing.Mobile.ZXingMediaView(UI.Forms.NativeParent);
 				zxingWindow.Show();
 				base.SetNativeControl(zxingWindow);
 

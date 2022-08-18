@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows.Input;
+#if !NET6_0
 using Xamarin.Forms;
+#endif
 
 namespace ZXing.Net.Mobile.Forms
 {
@@ -25,58 +27,89 @@ namespace ZXing.Net.Mobile.Forms
 			RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
 			ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
 
+#if NET6_0
+			var backgroundColor = Colors.Black;
+            var backgroundColor2 = Colors.Red;
+            var textColor = Colors.White;
+#else
+			var backgroundColor = Color.Black;
+			var backgroundColor2 = Color.Red;
+			var textColor = Color.White;
+#endif
 
 			Children.Add(new BoxView
 			{
 				VerticalOptions = LayoutOptions.Fill,
 				HorizontalOptions = LayoutOptions.FillAndExpand,
-				BackgroundColor = Color.Black,
+				BackgroundColor = backgroundColor,
 				Opacity = 0.7,
+#if NET6_0
+			});
+#else
 			}, 0, 0);
+#endif
 
 			Children.Add(new BoxView
 			{
 				VerticalOptions = LayoutOptions.Fill,
 				HorizontalOptions = LayoutOptions.FillAndExpand,
-				BackgroundColor = Color.Black,
+				BackgroundColor = backgroundColor,
 				Opacity = 0.7,
+#if NET6_0
+			});
+#else
 			}, 0, 2);
+#endif
 
 			Children.Add(new BoxView
 			{
 				VerticalOptions = LayoutOptions.Center,
 				HorizontalOptions = LayoutOptions.FillAndExpand,
 				HeightRequest = 3,
-				BackgroundColor = Color.Red,
+				BackgroundColor = backgroundColor2,
 				Opacity = 0.6,
+#if NET6_0
+            });
+#else
 			}, 0, 1);
+#endif
 
-			topText = new Label
+            topText = new Label
 			{
 				VerticalOptions = LayoutOptions.Center,
 				HorizontalOptions = LayoutOptions.Center,
-				TextColor = Color.White,
+				TextColor = textColor,
 				AutomationId = "zxingDefaultOverlay_TopTextLabel",
 			};
 			topText.SetBinding(Label.TextProperty, new Binding(nameof(TopText)));
-			Children.Add(topText, 0, 0);
+			Children.Add(topText
+#if NET6_0
+				);
+#else
+				, 0, 0);
+#endif
 
-			botText = new Label
+            botText = new Label
 			{
 				VerticalOptions = LayoutOptions.Center,
 				HorizontalOptions = LayoutOptions.Center,
-				TextColor = Color.White,
+				TextColor = textColor,
 				AutomationId = "zxingDefaultOverlay_BottomTextLabel",
 			};
 			botText.SetBinding(Label.TextProperty, new Binding(nameof(BottomText)));
-			Children.Add(botText, 0, 2);
+			Children.Add(botText
+#if NET6_0
+                );
+#else
+				, 0, 2);
+#endif
 
-			flash = new Button
+            flash = new Button
 			{
 				HorizontalOptions = LayoutOptions.End,
 				VerticalOptions = LayoutOptions.Start,
 				Text = "Flash",
-				TextColor = Color.White,
+				TextColor = textColor,
 				AutomationId = "zxingDefaultOverlay_FlashButton",
 			};
 			flash.SetBinding(Button.IsVisibleProperty, new Binding(nameof(ShowFlashButton)));
@@ -85,10 +118,15 @@ namespace ZXing.Net.Mobile.Forms
 				FlashButtonClicked?.Invoke(flash, e);
 			};
 
-			Children.Add(flash, 0, 0);
-		}
+			Children.Add(flash
+#if NET6_0
+                );
+#else
+				, 0, 0);
+#endif
+        }
 
-		public static readonly BindableProperty TopTextProperty =
+        public static readonly BindableProperty TopTextProperty =
 			BindableProperty.Create(nameof(TopText), typeof(string), typeof(ZXingDefaultOverlay), string.Empty);
 		public string TopText
 		{

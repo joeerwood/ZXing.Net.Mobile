@@ -9,9 +9,13 @@ using ZXing;
 using ZXing.Mobile;
 using System.Collections.Generic;
 
+#if NET6_0
+namespace Sample.Net6
+#else
 namespace Sample.iOS
+#endif
 {
-	public class HomeViewController : DialogViewController
+    public class HomeViewController : DialogViewController
 	{
 		public HomeViewController() : base(UITableViewStyle.Grouped, new RootElement("ZXing.Net.Mobile"), false)
 		{

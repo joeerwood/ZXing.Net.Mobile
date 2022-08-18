@@ -16,6 +16,11 @@ using Android.Widget;
 
 using ZXing;
 using AndroidX.Fragment.App;
+#if NET6_0
+using Microsoft.Maui.ApplicationModel;
+#else
+using Xamarin.Essentials;
+#endif
 
 using System.Linq;
 using System.Threading.Tasks;
@@ -108,7 +113,7 @@ namespace ZXing.Mobile
 		}
 
 		public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Permission[] grantResults)
-			=> Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+			=> Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
 		void StartScanning()
 		{

@@ -11,9 +11,13 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 
+#if NET6_0
+namespace Sample.Net6
+#else
 namespace Sample.Android
+#endif
 {
-	[Activity(Label = "ImageActivity")]
+    [Activity(Label = "ImageActivity")]
 	public class ImageActivity : Activity
 	{
 		ImageView imageBarcode;

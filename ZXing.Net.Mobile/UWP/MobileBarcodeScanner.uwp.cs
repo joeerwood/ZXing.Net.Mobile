@@ -2,8 +2,13 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Windows.UI.Core;
+#if WINDOWS_UWP
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+#else
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+#endif
 
 namespace ZXing.Mobile
 {

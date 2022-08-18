@@ -58,7 +58,7 @@
 		<Compile Include="**\*.netstandard.*.cs" />
 	</ItemGroup>
 	<ItemGroup Condition=" $(TargetFramework.StartsWith('uap10.0')) ">
-		<PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.2.11" />
+		<!--<PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.2.11" />-->
 		<Compile Include="**\*.uwp.cs" />
 		<Compile Include="**\*.uwp.*.cs" />
 		<Compile Include="ScanPage.xaml.cs">
@@ -100,7 +100,7 @@
 		<Compile Include="**\*.macos.*.cs" />
 	</ItemGroup>
 	<ItemGroup Condition=" $(TargetFramework.StartsWith('tizen')) ">
-		<PackageReference Include="Tizen.NET" Version="8.0.0.15631" />
+		<!--<PackageReference Include="Tizen.NET" Version="8.0.0.15631" />-->
 		<Compile Include="**\*.tizen.cs" />
 		<Compile Include="**\*.tizen.*.cs" />
 	</ItemGroup>

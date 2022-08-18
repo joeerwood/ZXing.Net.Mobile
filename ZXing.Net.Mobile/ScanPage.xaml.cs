@@ -4,15 +4,13 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
+#if WINDOWS_UWP
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+#else
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Navigation;
+#endif
 using ZXing.Mobile;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
@@ -80,7 +78,7 @@ namespace ZXing.Mobile
 			base.OnNavigatingFrom(e);
 		}
 
-		#region IMobileBarcodeScanner Implementation
+#region IMobileBarcodeScanner Implementation
 		public bool UseCustomOverlay
 			=> scannerControl.UseCustomOverlay;
 
@@ -161,7 +159,7 @@ namespace ZXing.Mobile
 
 		public void ResumeAnalysis()
 			=> scannerControl?.ResumeAnalysis();
-		#endregion
+#endregion
 	}
 
 	public class ScanPageNavigationParameters

@@ -5,9 +5,13 @@ using CoreFoundation;
 using CoreGraphics;
 using UIKit;
 
+#if NET6_0
+namespace Sample.Net6
+#else
 namespace Sample.iOS
+#endif
 {
-	public class CustomOverlayView : UIView
+    public class CustomOverlayView : UIView
 	{
 		public UIButton ButtonTorch;
 		public UIButton ButtonCancel;

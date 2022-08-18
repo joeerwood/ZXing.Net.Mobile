@@ -1,0 +1,73 @@
+=====================
+17/08/2022 17:41:49
+Recoverable
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at Microsoft.VisualStudio.ProjectSystem.ProjectSerialization.CachedMsBuildGlobWithGaps.IsMatch(String stringToMatch)
+   at System.Linq.ImmutableCollectionsExtensions.Any[TElement,TArg](ImmutableArray`1 immutableArray, Func`3 predicate, TArg arg)
+   at System.Linq.ImmutableCollectionsExtensions.Any[TElement,TArg](ImmutableArray`1 immutableArray, Func`3 predicate, TArg arg)
+   at Microsoft.VisualStudio.ProjectSystem.ProjectSerialization.ConstructionUtilities.<>c__DisplayClass16_0.<CheckIfProjectConeChangedOnDisk>b__1(FileSystemEntry& entry)
+   at Microsoft.IO.Enumeration.FileSystemEnumerator`1.MoveNext()
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   at Microsoft.VisualStudio.ProjectSystem.ProjectSerialization.ConstructionUtilities.CheckIfProjectConeChangedOnDisk(String projectPath, DateTime lastEvaluationTimeUtc, IEnumerable`1 globs, IProjectTelemetryService telemetryService, UnconfiguredProject project)
+   at Microsoft.VisualStudio.ProjectSystem.ProjectSerialization.ProjectCacheService.IsProjectCacheUpToDateSlow(ConfiguredProject configuredProject)
+===================
+17/08/2022 17:41:50
+Recoverable
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at Microsoft.VisualStudio.ProjectSystem.ProjectSerialization.CachedMsBuildGlobWithGaps.IsMatch(String stringToMatch)
+   at System.Linq.ImmutableCollectionsExtensions.Any[TElement,TArg](ImmutableArray`1 immutableArray, Func`3 predicate, TArg arg)
+   at System.Linq.ImmutableCollectionsExtensions.Any[TElement,TArg](ImmutableArray`1 immutableArray, Func`3 predicate, TArg arg)
+   at Microsoft.VisualStudio.ProjectSystem.ProjectSerialization.ConstructionUtilities.<>c__DisplayClass16_0.<CheckIfProjectConeChangedOnDisk>b__1(FileSystemEntry& entry)
+   at Microsoft.IO.Enumeration.FileSystemEnumerator`1.MoveNext()
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   at Microsoft.VisualStudio.ProjectSystem.ProjectSerialization.ConstructionUtilities.CheckIfProjectConeChangedOnDisk(String projectPath, DateTime lastEvaluationTimeUtc, IEnumerable`1 globs, IProjectTelemetryService telemetryService, UnconfiguredProject project)
+   at Microsoft.VisualStudio.ProjectSystem.ProjectSerialization.ProjectCacheService.IsProjectCacheUpToDateSlow(ConfiguredProject configuredProject)
+===================
+17/08/2022 17:41:50
+Recoverable
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at Microsoft.VisualStudio.ProjectSystem.ProjectSerialization.CachedMsBuildGlobWithGaps.IsMatch(String stringToMatch)
+   at System.Linq.ImmutableCollectionsExtensions.Any[TElement,TArg](ImmutableArray`1 immutableArray, Func`3 predicate, TArg arg)
+   at System.Linq.ImmutableCollectionsExtensions.Any[TElement,TArg](ImmutableArray`1 immutableArray, Func`3 predicate, TArg arg)
+   at Microsoft.VisualStudio.ProjectSystem.ProjectSerialization.ConstructionUtilities.<>c__DisplayClass16_0.<CheckIfProjectConeChangedOnDisk>b__1(FileSystemEntry& entry)
+   at Microsoft.IO.Enumeration.FileSystemEnumerator`1.MoveNext()
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   at Microsoft.VisualStudio.ProjectSystem.ProjectSerialization.ConstructionUtilities.CheckIfProjectConeChangedOnDisk(String projectPath, DateTime lastEvaluationTimeUtc, IEnumerable`1 globs, IProjectTelemetryService telemetryService, UnconfiguredProject project)
+   at Microsoft.VisualStudio.ProjectSystem.ProjectSerialization.ProjectCacheService.IsProjectCacheUpToDateSlow(ConfiguredProject configuredProject)
+===================
+17/08/2022 17:41:50
+Recoverable
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at Microsoft.VisualStudio.ProjectSystem.ProjectSerialization.CachedMsBuildGlobWithGaps.IsMatch(String stringToMatch)
+   at System.Linq.ImmutableCollectionsExtensions.Any[TElement,TArg](ImmutableArray`1 immutableArray, Func`3 predicate, TArg arg)
+   at System.Linq.ImmutableCollectionsExtensions.Any[TElement,TArg](ImmutableArray`1 immutableArray, Func`3 predicate, TArg arg)
+   at Microsoft.VisualStudio.ProjectSystem.ProjectSerialization.ConstructionUtilities.<>c__DisplayClass16_0.<CheckIfProjectConeChangedOnDisk>b__1(FileSystemEntry& entry)
+   at Microsoft.IO.Enumeration.FileSystemEnumerator`1.MoveNext()
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   at Microsoft.VisualStudio.ProjectSystem.ProjectSerialization.ConstructionUtilities.CheckIfProjectConeChangedOnDisk(String projectPath, DateTime lastEvaluationTimeUtc, IEnumerable`1 globs, IProjectTelemetryService telemetryService, UnconfiguredProject project)
+   at Microsoft.VisualStudio.ProjectSystem.ProjectSerialization.ProjectCacheService.IsProjectCacheUpToDateSlow(ConfiguredProject configuredProject)
+===================
+17/08/2022 17:41:50
+Recoverable
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at Microsoft.VisualStudio.ProjectSystem.ProjectSerialization.CachedMsBuildGlobWithGaps.IsMatch(String stringToMatch)
+   at System.Linq.ImmutableCollectionsExtensions.Any[TElement,TArg](ImmutableArray`1 immutableArray, Func`3 predicate, TArg arg)
+   at System.Linq.ImmutableCollectionsExtensions.Any[TElement,TArg](ImmutableArray`1 immutableArray, Func`3 predicate, TArg arg)
+   at Microsoft.VisualStudio.ProjectSystem.ProjectSerialization.ConstructionUtilities.<>c__DisplayClass16_0.<CheckIfProjectConeChangedOnDisk>b__1(FileSystemEntry& entry)
+   at Microsoft.IO.Enumeration.FileSystemEnumerator`1.MoveNext()
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   at Microsoft.VisualStudio.ProjectSystem.ProjectSerialization.ConstructionUtilities.CheckIfProjectConeChangedOnDisk(String projectPath, DateTime lastEvaluationTimeUtc, IEnumerable`1 globs, IProjectTelemetryService telemetryService, UnconfiguredProject project)
+   at Microsoft.VisualStudio.ProjectSystem.ProjectSerialization.ProjectCacheService.IsProjectCacheUpToDateSlow(ConfiguredProject configuredProject)
+===================
+17/08/2022 17:41:50
+Recoverable
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at Microsoft.VisualStudio.ProjectSystem.ProjectSerialization.CachedMsBuildGlobWithGaps.IsMatch(String stringToMatch)
+   at System.Linq.ImmutableCollectionsExtensions.Any[TElement,TArg](ImmutableArray`1 immutableArray, Func`3 predicate, TArg arg)
+   at System.Linq.ImmutableCollectionsExtensions.Any[TElement,TArg](ImmutableArray`1 immutableArray, Func`3 predicate, TArg arg)
+   at Microsoft.VisualStudio.ProjectSystem.ProjectSerialization.ConstructionUtilities.<>c__DisplayClass16_0.<CheckIfProjectConeChangedOnDisk>b__1(FileSystemEntry& entry)
+   at Microsoft.IO.Enumeration.FileSystemEnumerator`1.MoveNext()
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   at Microsoft.VisualStudio.ProjectSystem.ProjectSerialization.ConstructionUtilities.CheckIfProjectConeChangedOnDisk(String projectPath, DateTime lastEvaluationTimeUtc, IEnumerable`1 globs, IProjectTelemetryService telemetryService, UnconfiguredProject project)
+   at Microsoft.VisualStudio.ProjectSystem.ProjectSerialization.ProjectCacheService.IsProjectCacheUpToDateSlow(ConfiguredProject configuredProject)
+===================

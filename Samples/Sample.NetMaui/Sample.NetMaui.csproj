@@ -1,0 +1,94 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net6.0-android;net6.0-ios</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net6.0-windows10.0.19041.0</TargetFrameworks>
+		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
+		 <TargetFrameworks>$(TargetFrameworks);net6.0-tizen</TargetFrameworks> 
+		<OutputType>Exe</OutputType>
+		<RootNamespace>Sample.NetMaui</RootNamespace>
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>enable</ImplicitUsings>
+
+		<!-- Display name -->
+		<ApplicationTitle>Sample.NetMaui</ApplicationTitle>
+
+		<!-- App Identifier -->
+		<ApplicationId>com.companyname.sample.netmaui</ApplicationId>
+		<ApplicationIdGuid>6BECFB03-C75D-4DD9-818C-7DB284D599F7</ApplicationIdGuid>
+
+		<!-- Versions -->
+		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+		<ApplicationVersion>1</ApplicationVersion>
+
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="ZXing.Net" Version="0.16.8" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<!-- App Icon -->
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+
+		<!-- Splash Screen -->
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+
+		<!-- Images -->
+		<MauiImage Include="Resources\Images\*" />
+		<MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
+
+		<!-- Custom Fonts -->
+		<MauiFont Include="Resources\Fonts\*" />
+
+		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Include="..\Sample.Forms\Sample.Forms\BarcodePage.cs" Link="BarcodePage.cs" />
+	  <Compile Include="..\Sample.Forms\Sample.Forms\CustomContinuousScanPage.cs" Link="CustomContinuousScanPage.cs" />
+	  <Compile Include="..\Sample.Forms\Sample.Forms\CustomScanPage.cs" Link="CustomScanPage.cs" />
+	  <Compile Include="..\Sample.Forms\Sample.Forms\HomePage.cs" Link="HomePage.cs" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(TargetFramework.StartsWith('net6.0-android')) == true">
+		<AndroidResource Include="..\Sample.Android\Resources\values\Strings.xml" Link="Platforms\Android\Resources\values\Strings.xml" />
+		<AndroidResource Include="..\Sample.Android\Resources\layout\FragmentActivity.axml" Link="Platforms\Android\Resources\layout\FragmentActivity.axml" />
+		<AndroidResource Include="..\Sample.Android\Resources\layout\ImageActivity.axml" Link="Platforms\Android\Resources\layout\ImageActivity.axml" />
+		<AndroidResource Include="..\Sample.Android\Resources\layout\Main.axml" Link="Platforms\Android\Resources\layout\Main.axml" />
+		<AndroidResource Include="..\Sample.Android\Resources\layout\ZxingOverlay.axml" Link="Platforms\Android\Resources\layout\ZxingOverlay.axml" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(TargetFramework.StartsWith('net6.0-ios')) == true">
+		<None Include="..\..\Samples\Sample.Forms\Sample.Forms.iOS\Resources\LaunchScreen.storyboard" Link="Platforms\iOS\Resources\LaunchScreen.storyboard" />
+	</ItemGroup>
+	
+	<ItemGroup Condition="$(TargetFramework.Contains('-tizen')) == true ">
+		<Content Include="..\..\Samples\Sample.Forms\Sample.Forms.Tizen\shared\res\FormsSample.Tizen.png" Link="Platforms\Tizen\shared\res\FormsSample.Tizen.png" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(TargetFramework.Contains('-windows')) == true ">
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\ZXing.Net6.Mobile.NetMaui\ZXing.Net6.Mobile.NetMaui.csproj" />
+	  <ProjectReference Include="..\..\ZXing.Net6.Mobile\ZXing.Net6.Mobile.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Platforms\Android\Resources\layout\" />
+	  <Folder Include="Platforms\Android\Resources\values\" />
+		<Folder Include="Platforms\iOS\" />
+		<Folder Include="Platforms\iOS\Resources\" />
+	  <Folder Include="Platforms\Tizen\shared\res\" />
+	  <Folder Include="Platforms\Windows\" />
+	</ItemGroup>
+
+</Project>

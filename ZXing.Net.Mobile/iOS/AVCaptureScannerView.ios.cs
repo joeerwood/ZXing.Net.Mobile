@@ -104,8 +104,12 @@ namespace ZXing.Mobile
 			// create a device input and attach it to the session
 			//			var captureDevice = AVCaptureDevice.DefaultDeviceWithMediaType (AVMediaType.Video);
 			AVCaptureDevice captureDevice = null;
+#if NET6_0
+            var devices = AVCaptureDevice.DevicesWithMediaType(AVMediaTypes.Video.ToString());
+#else
 			var devices = AVCaptureDevice.DevicesWithMediaType(AVMediaType.Video);
-			foreach (var device in devices)
+#endif
+            foreach (var device in devices)
 			{
 				captureDevice = device;
 				if (ScanningOptions.UseFrontCameraIfAvailable.HasValue &&
@@ -338,13 +342,21 @@ namespace ZXing.Mobile
 
 		public void Focus(CGPoint pointOfInterest)
 		{
-			//Get the device
+            //Get the device
+#if NET6_0
+            if (AVAuthorizationMediaType.Video == null)
+#else
 			if (AVMediaType.Video == null)
-				return;
+#endif
+                return;
 
-			var device = AVCaptureDevice.DefaultDeviceWithMediaType(AVMediaType.Video);
+////#if NET6_0
+            var device = AVCaptureDevice.GetDefaultDevice(AVMediaTypes.Video);
+////#else
+////			var device = AVCaptureDevice.DefaultDeviceWithMediaType(AVMediaType.Video);
+////#endif
 
-			if (device == null)
+            if (device == null)
 				return;
 
 			//See if it supports focusing on a point
@@ -365,7 +377,7 @@ namespace ZXing.Mobile
 			}
 		}
 
-		#region IZXingScanner implementation
+#region IZXingScanner implementation
 		public void StartScanning(Action<Result> scanResultHandler, MobileBarcodeScanningOptions options = null)
 		{
 			if (!analyzing)
@@ -439,8 +451,12 @@ namespace ZXing.Mobile
 		{
 			try
 			{
-				var device = AVCaptureDevice.DefaultDeviceWithMediaType(AVMediaType.Video);
-				if (device.HasFlash || device.HasTorch)
+////#if NET6_0
+                var device = AVCaptureDevice.GetDefaultDevice(AVMediaTypes.Video);
+////#else
+////				var device = AVCaptureDevice.DefaultDeviceWithMediaType(AVMediaType.Video);
+////#endif
+                if (device.HasFlash || device.HasTorch)
 				{
 					device.LockForConfiguration(out var err);
 
@@ -499,12 +515,16 @@ namespace ZXing.Mobile
 				if (hasTorch.HasValue)
 					return hasTorch.Value;
 
-				var device = AVCaptureDevice.DefaultDeviceWithMediaType(AVMediaType.Video);
-				hasTorch = device.HasFlash || device.HasTorch;
+////#if NET6_0
+                var device = AVCaptureDevice.GetDefaultDevice(AVMediaTypes.Video);
+////#else
+////				var device = AVCaptureDevice.DefaultDeviceWithMediaType(AVMediaType.Video);
+////#endif
+                hasTorch = device.HasFlash || device.HasTorch;
 				return hasTorch.Value;
 			}
 		}
-		#endregion
+#endregion
 
 		public static bool SupportsAllRequestedBarcodeFormats(IEnumerable<BarcodeFormat> formats)
 		{

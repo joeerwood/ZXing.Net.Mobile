@@ -1,29 +1,44 @@
 ﻿using System;
+#if NET6_0
+using UIKit;
+using Microsoft.Maui.Controls.Compatibility;
+using Microsoft.Maui.Controls.Compatibility.Platform.iOS;
+using Microsoft.Maui.Controls.Platform;
+#else
+using AppKit;
 using Xamarin.Forms;
+using Xamarin.Forms.Platform.MacOS;
+#endif
 using ZXing.Net.Mobile.Forms;
 using ZXing.Net.Mobile.Forms.MacOS;
 using System.ComponentModel;
 using System.Reflection;
 using ZXing.Mobile;
 using System.Threading.Tasks;
-using Xamarin.Forms.Platform.MacOS;
 using Foundation;
-using AppKit;
 
 [assembly: ExportRenderer(typeof(ZXingBarcodeImageView), typeof(ZXingBarcodeImageViewRenderer))]
 
 namespace ZXing.Net.Mobile.Forms.MacOS
 {
-	[Preserve(AllMembers = true)]
-	public class ZXingBarcodeImageViewRenderer : ViewRenderer<ZXingBarcodeImageView, NSImageView>
-	{
-		public static void Init()
+#if NET6_0
+    public class ZXingBarcodeImageViewRenderer : ViewRenderer<ZXingBarcodeImageView, UIImageView>
+#else
+    [Preserve(AllMembers = true)]
+    public class ZXingBarcodeImageViewRenderer : ViewRenderer<ZXingBarcodeImageView, NSImageView>
+#endif
+    {
+        public static void Init()
 		{
 			var temp = DateTime.Now;
 		}
 
 		ZXingBarcodeImageView formsView;
-		NSImageView imageView;
+#if NET6_0
+		UIImageView imageView;
+#else
+        NSImageView imageView;
+#endif
 
 		protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
 		{
@@ -41,8 +56,12 @@ namespace ZXing.Net.Mobile.Forms.MacOS
 
 			if (formsView != null && imageView == null)
 			{
-				imageView = new NSImageView();
-				SetNativeControl(imageView);
+#if NET6_0
+                imageView = new UIImageView();
+#else
+                imageView = new NSImageView();
+#endif
+                SetNativeControl(imageView);
 			}
 
 			Regenerate();
@@ -73,7 +92,14 @@ namespace ZXing.Net.Mobile.Forms.MacOS
 				{
 					var image = writer?.Write(barcodeValue);
 					if (imageView != null)
-						imageView.Image = image;
+					{
+#if NET6_0
+						var imageData = image.AsTiff();
+						imageView.Image = new UIImage(imageData);
+#else
+                        imageView.Image = image;
+#endif
+					}
 				}
 				catch (Exception ex)
 				{

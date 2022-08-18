@@ -1,8 +1,15 @@
 ﻿using System;
+#if NET6_0
+using Microsoft.Maui.Controls.Compatibility;
+using Microsoft.Maui.Controls.Compatibility.Platform.UWP;
+using Microsoft.Maui.Controls.Platform;
+#else
+using Xamarin.Essentials;
 using Xamarin.Forms;
+using Xamarin.Forms.Platform.UWP;
+#endif
 using ZXing.Net.Mobile.Forms;
 using ZXing.Net.Mobile.Forms.WindowsUniversal;
-using Xamarin.Forms.Platform.UWP;
 using System.ComponentModel;
 using System.Reflection;
 
@@ -29,8 +36,8 @@ namespace ZXing.Net.Mobile.Forms.WindowsUniversal
 			{
 				formsView.AutoFocusRequested += FormsView_AutoFocusRequested;
 
-				var cameraPermission = await Xamarin.Essentials.Permissions.RequestAsync<Xamarin.Essentials.Permissions.Camera>();
-				if (cameraPermission != Xamarin.Essentials.PermissionStatus.Granted)
+				var cameraPermission = await Permissions.RequestAsync<Permissions.Camera>();
+				if (cameraPermission != PermissionStatus.Granted)
 				{
 					Console.WriteLine("Missing Camera Permission");
 					return;

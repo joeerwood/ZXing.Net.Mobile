@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+#if !NET6_0
 using Xamarin.Forms;
+#endif
 using ZXing.Net.Mobile.Forms;
 
 namespace Sample.Forms

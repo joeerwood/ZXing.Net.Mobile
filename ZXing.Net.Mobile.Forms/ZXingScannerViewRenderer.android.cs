@@ -1,10 +1,17 @@
 ﻿using System;
+#if NET6_0
+using Microsoft.Maui.Controls.Compatibility;
+using Microsoft.Maui.Controls.Compatibility.Platform.Android;
+using Microsoft.Maui.Controls.Platform;
+#else
+using Xamarin.Essentials;
 using Xamarin.Forms;
+using Xamarin.Forms.Platform.Android;
+#endif
 using ZXing.Net.Mobile.Forms;
 using ZXing.Net.Mobile.Forms.Android;
 using Android.Runtime;
 using Android.App;
-using Xamarin.Forms.Platform.Android;
 using Android.Views;
 using System.ComponentModel;
 using System.Reflection;
@@ -56,17 +63,17 @@ namespace ZXing.Net.Mobile.Forms.Android
 					}
 				};
 
-				var cameraPermission = await Xamarin.Essentials.Permissions.RequestAsync<Xamarin.Essentials.Permissions.Camera>();
-				if (cameraPermission != Xamarin.Essentials.PermissionStatus.Granted)
+				var cameraPermission = await Permissions.RequestAsync<Permissions.Camera>();
+				if (cameraPermission != PermissionStatus.Granted)
 				{
 					Console.WriteLine("Missing Camera Permission");
 					return;
 				}
 
-				if (Xamarin.Essentials.Permissions.IsDeclaredInManifest("android.permission.FLASHLIGHT"))
+				if (Permissions.IsDeclaredInManifest("android.permission.FLASHLIGHT"))
 				{
-					var fp = await Xamarin.Essentials.Permissions.RequestAsync<Xamarin.Essentials.Permissions.Flashlight>();
-					if (fp != Xamarin.Essentials.PermissionStatus.Granted)
+					var fp = await Permissions.RequestAsync<Permissions.Flashlight>();
+					if (fp != PermissionStatus.Granted)
 					{
 						Console.WriteLine("Missing Flashlight Permission");
 						return;

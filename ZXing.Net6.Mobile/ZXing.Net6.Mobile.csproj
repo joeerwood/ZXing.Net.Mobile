@@ -1,0 +1,160 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFrameworks>net6.0;net6.0-android;net6.0-ios;net6.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net6.0-windows10.0.19041.0</TargetFrameworks>
+		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
+		 <TargetFrameworks>$(TargetFrameworks);net6.0-tizen</TargetFrameworks> 
+		<UseMauiEssentials>true</UseMauiEssentials>
+		<SingleProject>true</SingleProject>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+		<EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+		<EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
+		<EnableDefaultPageItems>false</EnableDefaultPageItems>
+		<EnableDefaultControlItems>false</EnableDefaultControlItems>
+
+		<AssemblyName>ZXingNet6Mobile</AssemblyName>
+		<RootNamespace>ZXing.Net.Mobile</RootNamespace>
+		<PackageId>ZXing.Net.Mobile</PackageId>
+		<PackageIcon>icon.png</PackageIcon>
+		<Summary>ZXing Barcode Scanning for your Xamarin.iOS, Xamarin.Android and Windows Universal apps!</Summary>
+		<PackageTags></PackageTags>
+		<Title>ZXing.Net.Mobile Barcode Scanner</Title>
+		<Description>
+			ZXing.Net.Mobile is a C#/.NET library based on the open source Barcode Library: ZXing (Zebra Crossing), using the ZXing.Net Port. It works with Xamarin.iOS, Xamarin.Android, Tizen and Windows Universal (UWP). The goal of ZXing.Net.Mobile is to make scanning barcodes as effortless and painless as possible in your own applications.
+
+			See https://github.com/Redth/ZXing.Net.Mobile/releases for release notes.
+		</Description>
+		<Product>$(AssemblyName) ($(TargetFramework))</Product>
+		<AssemblyVersion>3.0.0.0</AssemblyVersion>
+		<AssemblyFileVersion>3.0.0.0</AssemblyFileVersion>
+		<Version>3.0.0</Version>
+		<PackageVersion>$(Version)$(VersionSuffix)</PackageVersion>
+		<Authors>Redth</Authors>
+		<Owners>Redth</Owners>
+		<NeutralLanguage>en</NeutralLanguage>
+		<Copyright>© Redth</Copyright>
+		<RepositoryUrl>https://github.com/redth/ZXing.Net.Mobile</RepositoryUrl>
+		<PackageReleaseNotes>See: https://github.com/Redth/ZXing.Net.Mobile/releases</PackageReleaseNotes>
+		<DefineConstants>$(DefineConstants);</DefineConstants>
+		<UseFullSemVerForNuGet>false</UseFullSemVerForNuGet>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageProjectUrl>http://github.com/Redth/ZXing.Net.Mobile</PackageProjectUrl>
+		<DebugType>portable</DebugType>
+		<Configurations>Debug;Release</Configurations>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)'=='Debug' ">
+		<DebugSymbols>true</DebugSymbols>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="ZXing.Net" Version="0.16.8" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="..\Art\ZXing.Net.Mobile-Icon.png" PackagePath="icon.png" Pack="true" />
+		<Compile Include="..\ZXing.Net.Mobile\CameraResolution.shared.cs" Link="Shared\CameraResolution.shared.cs" />
+		<Compile Include="..\ZXing.Net.Mobile\IMobileBarcodeScanner.shared.cs" Link="Shared\IMobileBarcodeScanner.shared.cs" />
+		<Compile Include="..\ZXing.Net.Mobile\IScannerSessionHost.shared.cs" Link="Shared\IScannerSessionHost.shared.cs" />
+		<Compile Include="..\ZXing.Net.Mobile\IScannerView.shared.cs" Link="Shared\IScannerView.shared.cs" />
+		<Compile Include="..\ZXing.Net.Mobile\MobileBarcodeScanner.shared.cs" Link="Shared\MobileBarcodeScanner.shared.cs" />
+		<Compile Include="..\ZXing.Net.Mobile\MobileBarcodeScanningOptions.shared.cs" Link="Shared\MobileBarcodeScanningOptions.shared.cs" />
+		<Compile Include="..\ZXing.Net.Mobile\Performance.shared.cs" Link="Shared\Performance.shared.cs" />
+	</ItemGroup>
+
+	<!--net6-->
+	<ItemGroup Condition="'$(TargetFramework)'=='net6.0'">
+		<Compile Include="..\ZXing.Net.Mobile\MobileBarcodeScanner.netstandard.cs" Link="Portable\MobileBarcodeScanner.netstandard.cs" />
+	</ItemGroup>
+
+	<!--Android-->
+	<ItemGroup Condition="$(TargetFramework.StartsWith('net6.0-android')) == true">
+		<Compile Include="..\ZXing.Net.Mobile\Android\BitmapRenderer.android.cs" Link="Android\BitmapRenderer.android.cs" />
+		<Compile Include="..\ZXing.Net.Mobile\Android\BitmapWriter.android.cs" Link="Android\BitmapWriter.android.cs" />
+		<Compile Include="..\ZXing.Net.Mobile\Android\CameraAccess\CameraAnalyzer.android.cs" Link="Android\CameraAccess\CameraAnalyzer.android.cs" />
+		<Compile Include="..\ZXing.Net.Mobile\Android\CameraAccess\CameraController.android.cs" Link="Android\CameraAccess\CameraController.android.cs" />
+		<Compile Include="..\ZXing.Net.Mobile\Android\CameraAccess\CameraEventsListener.android.cs" Link="Android\CameraAccess\CameraEventsListener.android.cs" />
+		<Compile Include="..\ZXing.Net.Mobile\Android\CameraAccess\Torch.android.cs" Link="Android\CameraAccess\Torch.android.cs" />
+		<Compile Include="..\ZXing.Net.Mobile\Android\FastJavaArrayEx.android.cs" Link="Android\FastJavaArrayEx.android.cs" />
+		<Compile Include="..\ZXing.Net.Mobile\Android\FastJavaByteArrayYUVLuminanceSource.android.cs" Link="Android\FastJavaByteArrayYUVLuminanceSource.android.cs" />
+		<Compile Include="..\ZXing.Net.Mobile\Android\MobileBarcodeScanner.android.cs" Link="Android\MobileBarcodeScanner.android.cs" />
+		<Compile Include="..\ZXing.Net.Mobile\Android\Permissions.android.cs" Link="Android\Permissions.android.cs" />
+		<Compile Include="..\ZXing.Net.Mobile\Android\PermissionsHandler.android.cs" Link="Android\PermissionsHandler.android.cs" />
+		<Compile Include="..\ZXing.Net.Mobile\Android\ZxingActivity.android.cs" Link="Android\ZxingActivity.android.cs" />
+		<Compile Include="..\ZXing.Net.Mobile\Android\ZxingOverlayView.android.cs" Link="Android\ZxingOverlayView.android.cs" />
+		<Compile Include="..\ZXing.Net.Mobile\Android\ZXingScannerFragment.android.cs" Link="Android\ZXingScannerFragment.android.cs" />
+		<Compile Include="..\ZXing.Net.Mobile\Android\ZXingSurfaceView.android.cs" Link="Android\ZXingSurfaceView.android.cs" />
+		<AndroidResource Include="..\ZXing.Net.Mobile\Resources\layout\zxingscanneractivitylayout.axml" Link="Android\Resources\layout\zxingscanneractivitylayout.axml" />
+		<AndroidResource Include="..\ZXing.Net.Mobile\Resources\layout\zxingscannerfragmentlayout.axml" Link="Android\Resources\layout\zxingscannerfragmentlayout.axml" />
+		<PackageReference Include="FastAndroidCamera" Version="2.0.0" />
+		<PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.4.2.1" />
+	</ItemGroup>
+
+	<!--iOS-->
+	<ItemGroup Condition="$(TargetFramework.StartsWith('net6.0-ios')) == true">
+		<Compile Include="..\ZXing.Net.Mobile\iOS\AVCaptureScannerView.ios.cs" Link="iOS\AVCaptureScannerView.ios.cs" />
+		<Compile Include="..\ZXing.Net.Mobile\iOS\AVCaptureScannerViewController.ios.cs" Link="iOS\AVCaptureScannerViewController.ios.cs" />
+		<Compile Include="..\ZXing.Net.Mobile\iOS\BarcodeWriter.ios.cs" Link="iOS\BarcodeWriter.ios.cs" />
+		<Compile Include="..\ZXing.Net.Mobile\iOS\BitmapRenderer.ios.cs" Link="iOS\BitmapRenderer.ios.cs" />
+		<Compile Include="..\ZXing.Net.Mobile\iOS\CVPixelBufferBGRA32LuminanceSource.ios.cs" Link="iOS\CVPixelBufferBGRA32LuminanceSource.ios.cs" />
+		<Compile Include="..\ZXing.Net.Mobile\iOS\IScannerViewController.ios.cs" Link="iOS\IScannerViewController.ios.cs" />
+		<Compile Include="..\ZXing.Net.Mobile\iOS\MobileBarcodeScanner.ios.cs" Link="iOS\MobileBarcodeScanner.ios.cs" />
+		<Compile Include="..\ZXing.Net.Mobile\iOS\RGBLuminanceSourceiOS.ios.cs" Link="iOS\RGBLuminanceSourceiOS.ios.cs" />
+		<Compile Include="..\ZXing.Net.Mobile\iOS\UIImageBarcodeReader.ios.cs" Link="iOS\UIImageBarcodeReader.ios.cs" />
+		<Compile Include="..\ZXing.Net.Mobile\iOS\ZXingDefaultOverlayView.ios.cs" Link="iOS\ZXingDefaultOverlayView.ios.cs" />
+		<Compile Include="..\ZXing.Net.Mobile\iOS\ZXingScannerView.ios.cs" Link="iOS\ZXingScannerView.ios.cs" />
+		<Compile Include="..\ZXing.Net.Mobile\iOS\ZXingScannerViewController.ios.cs" Link="iOS\ZXingScannerViewController.ios.cs" />
+	</ItemGroup>
+
+	<!--MacCatalyst-->
+	<ItemGroup Condition="$(TargetFramework.Contains('-maccatalyst')) == true ">
+		<Compile Include="..\ZXing.Net.Mobile\MacOS\BitmapRenderer.macos.cs" Link="MacCatalyst\BitmapRenderer.macos.cs" />
+		<Compile Include="..\ZXing.Net.Mobile\MacOS\BitmapWriter.macos.cs" Link="MacCatalyst\BitmapWriter.macos.cs" />
+		<Compile Include="..\ZXing.Net.Mobile\MacOS\MobileBarcodeScanner.macos.cs" Link="MacCatalyst\MobileBarcodeScanner.macos.cs" />
+	</ItemGroup>
+
+	<!--Tizen-->
+	<ItemGroup Condition="$(TargetFramework.Contains('-tizen')) == true ">
+		<Compile Include="..\ZXing.Net.Mobile\Tizen\BarcodeWriter.tizen.cs" Link="Tizen\BarcodeWriter.tizen.cs" />
+		<Compile Include="..\ZXing.Net.Mobile\Tizen\BitmapRenderer.tizen.cs" Link="Tizen\BitmapRenderer.tizen.cs" />
+		<Compile Include="..\ZXing.Net.Mobile\Tizen\MobileBarcodeScanner.tizen.cs" Link="Tizen\MobileBarcodeScanner.tizen.cs" />
+		<Compile Include="..\ZXing.Net.Mobile\Tizen\TizenBarcodeAnalyzer.tizen.cs" Link="Tizen\TizenBarcodeAnalyzer.tizen.cs" />
+		<Compile Include="..\ZXing.Net.Mobile\Tizen\ZXingDefaultOverlay.tizen.cs" Link="Tizen\ZXingDefaultOverlay.tizen.cs" />
+		<Compile Include="..\ZXing.Net.Mobile\Tizen\ZXingMediaView.tizen.cs" Link="Tizen\ZXingMediaView.tizen.cs" />
+		<Compile Include="..\ZXing.Net.Mobile\Tizen\ZXingScannerCamera.tizen.cs" Link="Tizen\ZXingScannerCamera.tizen.cs" />
+		<Compile Include="..\ZXing.Net.Mobile\Tizen\ZXingScannerWindow.tizen.cs" Link="Tizen\ZXingScannerWindow.tizen.cs" />
+	</ItemGroup>
+
+	<!--Windows-->
+	<ItemGroup Condition="$(TargetFramework.Contains('-windows')) == true ">
+		<Compile Include="..\ZXing.Net.Mobile\UWP\BarcodeWriter.uwp.cs" Link="Windows\BarcodeWriter.uwp.cs" />
+		<Compile Include="..\ZXing.Net.Mobile\UWP\MobileBarcodeScanner.uwp.cs" Link="Windows\MobileBarcodeScanner.uwp.cs" />
+		<Compile Include="..\ZXing.Net.Mobile\UWP\SoftwareBitmapLuminanceSource.uwp.cs" Link="Windows\SoftwareBitmapLuminanceSource.uwp.cs" />
+		<Compile Include="..\ZXing.Net.Mobile\UWP\VisualTreeHelperExt.uwp.cs" Link="Windows\VisualTreeHelperExt.uwp.cs" />
+		<Compile Include="..\ZXing.Net.Mobile\UWP\WriteableBitmapRenderer.uwp.cs" Link="Windows\WriteableBitmapRenderer.uwp.cs" />
+		<Compile Include="Windows\CaptureExtensions.winui.cs" />
+		<Compile Include="Windows\ZXingScannerControl.winui.xaml.cs">
+			<DependentUpon>ZXingScannerControl.winui.xaml</DependentUpon>
+		</Compile>
+		<Compile Include="..\ZXing.Net.Mobile\ScanPage.xaml.cs" Link="Windows\ScanPage.xaml.cs">
+			<DependentUpon>ScanPage.xaml</DependentUpon>
+		</Compile>
+		<Page Include="Windows\ZXingScannerControl.winui.xaml">
+			<SubType>Designer</SubType>
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Include="..\ZXing.Net.Mobile\ScanPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+			<Link>Windows\ScanPage.xaml</Link>
+		</Page>
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="iOS\Sub\" />
+	  <Folder Include="MacCatalyst\Sub\" />
+	  <Folder Include="Portable\Sub\" />
+	  <Folder Include="Tizen\Sub\" />
+	</ItemGroup>
+</Project>

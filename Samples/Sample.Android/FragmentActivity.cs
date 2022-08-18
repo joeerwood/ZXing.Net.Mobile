@@ -1,15 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
-using ZXing.Mobile;
 using Android.OS;
 
 using Android.App;
 using Android.Widget;
 using Android.Content.PM;
+#if NET6_0
+using Microsoft.Maui.ApplicationModel;
+#else
+using Xamarin.Essentials;
+#endif
+using ZXing.Mobile;
 
+#if NET6_0
+namespace Sample.Net6
+#else
 namespace Sample.Android
+#endif
 {
-	[Activity(Label = "ZXing.Net.Mobile", Theme = "@style/Theme.AppCompat.Light", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden)]
+    [Activity(Label = "ZXing.Net.Mobile", Theme = "@style/Theme.AppCompat.Light", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden)]
 	public class FragmentActivity : AndroidX.Fragment.App.FragmentActivity
 	{
 		ZXingScannerFragment scanFragment;
@@ -39,7 +48,7 @@ namespace Sample.Android
 		}
 
 		public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
-			=> Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+			=> Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
 		protected override void OnPause()
 		{

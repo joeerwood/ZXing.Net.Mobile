@@ -58,7 +58,6 @@
 		<Compile Include="**\*.netstandard.*.cs" />
 	</ItemGroup>
 	<ItemGroup Condition=" $(TargetFramework.StartsWith('uap10.0')) ">
-		<PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.2.11" />
 		<Compile Include="**\*.uwp.cs" />
 		<Compile Include="**\*.uwp.*.cs" />
 		<SDKReference Include="WindowsMobile, Version=10.0.16299.0">
@@ -82,14 +81,12 @@
 		<Compile Include="**\*.macos.*.cs" />
 	</ItemGroup>
 	<ItemGroup Condition=" $(TargetFramework.StartsWith('tizen')) ">
-		<PackageReference Include="Tizen.NET" Version="8.0.0.15631" />
 		<Compile Include="**\*.tizen.cs" />
 		<Compile Include="**\*.tizen.*.cs" />
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="Xamarin.Essentials" Version="1.6.0" />
 		<PackageReference Include="Xamarin.Forms" Version="5.0.0.1874" />
-		<PackageReference Include="ZXing.Net" Version="0.16.6" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\ZXing.Net.Mobile\ZXing.Net.Mobile.csproj" />

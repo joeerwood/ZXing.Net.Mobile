@@ -1,6 +1,11 @@
 ﻿using System.Collections.Generic;
+#if WINDOWS_UWP
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
+#else
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Media;
+#endif
 
 namespace ZXing.Mobile
 {

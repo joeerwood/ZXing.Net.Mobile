@@ -3,9 +3,13 @@ using ZXing.Mobile;
 using UIKit;
 using CoreGraphics;
 
+#if NET6_0
+namespace Sample.Net6
+#else
 namespace Sample.iOS
+#endif
 {
-	public class ImageViewController : UIViewController
+    public class ImageViewController : UIViewController
 	{
 		public ImageViewController() : base()
 		{

@@ -1,9 +1,17 @@
 using ElmSharp;
 using System;
 using System.ComponentModel;
+#if NET6_0
+using Microsoft.Maui.Controls.Compatibility;
+using Microsoft.Maui.Controls.Compatibility.Platform.Tizen;
+using Microsoft.Maui.Controls.Platform;
+using UI = Microsoft.Maui.Controls.Compatibility;
+#else
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Platform.Tizen;
+using UI = Xamarin.Forms;
+#endif
 using ZXing.Mobile;
 using ZXing.Net.Mobile.Forms;
 using ZXing.Net.Mobile.Forms.Tizen;
@@ -11,7 +19,9 @@ using ZXing.Net.Mobile.Forms.Tizen;
 [assembly: ExportRenderer(typeof(ZXingBarcodeImageView), typeof(ZXingBarcodeImageViewRenderer))]
 namespace ZXing.Net.Mobile.Forms.Tizen
 {
-	[Preserve(AllMembers = true)]
+#if !NET6_0
+    [Preserve(AllMembers = true)]
+#endif
 	class ZXingBarcodeImageViewRenderer : ViewRenderer<ZXingBarcodeImageView, EvasImage>
 	{
 		ZXingBarcodeImageView formsView;
@@ -38,7 +48,7 @@ namespace ZXing.Net.Mobile.Forms.Tizen
 
 			if (formsView != null && imageView == null)
 			{
-				imageView = new EvasImage(Xamarin.Forms.Forms.NativeParent);
+				imageView = new EvasImage(UI.Forms.NativeParent);
 				SetNativeControl(imageView);
 			}
 			

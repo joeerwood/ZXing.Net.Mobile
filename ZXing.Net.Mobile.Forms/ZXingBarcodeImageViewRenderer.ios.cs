@@ -1,12 +1,18 @@
 ﻿using System;
+#if NET6_0
+using Microsoft.Maui.Controls.Compatibility;
+using Microsoft.Maui.Controls.Compatibility.Platform.iOS;
+using Microsoft.Maui.Controls.Platform;
+#else
 using Xamarin.Forms;
+using Xamarin.Forms.Platform.iOS;
+#endif
 using ZXing.Net.Mobile.Forms;
 using ZXing.Net.Mobile.Forms.iOS;
 using System.ComponentModel;
 using System.Reflection;
 using ZXing.Mobile;
 using System.Threading.Tasks;
-using Xamarin.Forms.Platform.iOS;
 using Foundation;
 using UIKit;
 

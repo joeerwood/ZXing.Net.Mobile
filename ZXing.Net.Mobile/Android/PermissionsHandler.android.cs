@@ -6,7 +6,11 @@ using Android.App;
 using System.Threading.Tasks;
 using Android.Content.PM;
 using Android.Content;
+#if NET6_0
+using Microsoft.Maui.ApplicationModel;
+#else
 using Xamarin.Essentials;
+#endif
 
 namespace ZXing.Net.Mobile.Android
 {

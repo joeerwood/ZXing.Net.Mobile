@@ -1,9 +1,15 @@
 ﻿using System;
+#if NET6_0
+using Microsoft.Maui.Controls.Compatibility;
+using Microsoft.Maui.Controls.Compatibility.Platform.Android;
+using Microsoft.Maui.Controls.Platform;
+#else
 using Xamarin.Forms;
+using Xamarin.Forms.Platform.Android;
+#endif
 using ZXing.Net.Mobile.Forms;
 using ZXing.Net.Mobile.Forms.Android;
 using Android.Runtime;
-using Xamarin.Forms.Platform.Android;
 using System.ComponentModel;
 using Android.Widget;
 using ZXing.Mobile;
@@ -12,7 +18,9 @@ using Android.Graphics;
 [assembly: ExportRenderer(typeof(ZXingBarcodeImageView), typeof(ZXingBarcodeImageViewRenderer))]
 namespace ZXing.Net.Mobile.Forms.Android
 {
-	[Preserve(AllMembers = true)]
+#if !NET6_0
+    [Preserve(AllMembers = true)]
+#endif
 	public class ZXingBarcodeImageViewRenderer : ViewRenderer<ZXingBarcodeImageView, ImageView>
 	{
 		public ZXingBarcodeImageViewRenderer(global::Android.Content.Context context) : base(context)

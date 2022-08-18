@@ -1,4 +1,6 @@
-﻿using Xamarin.Forms;
+﻿#if !NET6_0
+using Xamarin.Forms;
+#endif
 using ZXing.Common;
 
 namespace ZXing.Net.Mobile.Forms

@@ -1,4 +1,6 @@
-﻿using Xamarin.Forms;
+﻿#if !NET6_0
+using Xamarin.Forms;
+#endif
 using ZXing.Mobile;
 
 namespace ZXing.Net.Mobile.Forms
@@ -62,7 +64,7 @@ namespace ZXing.Net.Mobile.Forms
 			Content = grid;
 		}
 
-		#region Default Overlay Properties
+#region Default Overlay Properties
 
 		public static readonly BindableProperty DefaultOverlayTopTextProperty =
 			BindableProperty.Create(nameof(DefaultOverlayTopText), typeof(string), typeof(ZXingScannerPage), string.Empty);
@@ -90,14 +92,14 @@ namespace ZXing.Net.Mobile.Forms
 			set => SetValue(DefaultOverlayShowFlashButtonProperty, value);
 		}
 
-		#endregion
+#endregion
 
 		public delegate void ScanResultDelegate(Result result);
 		public event ScanResultDelegate OnScanResult;
 
 		public View Overlay { get; private set; }
 
-		#region Functions
+#region Functions
 
 		public void ToggleTorch()
 			=> zxing?.ToggleTorch();
@@ -133,7 +135,7 @@ namespace ZXing.Net.Mobile.Forms
 
 		public void AutoFocus(int x, int y)
 			=> zxing?.AutoFocus(x, y);
-		#endregion
+#endregion
 
 		public static readonly BindableProperty IsTorchOnProperty =
 			BindableProperty.Create(nameof(IsTorchOn), typeof(bool), typeof(ZXingScannerPage), false);

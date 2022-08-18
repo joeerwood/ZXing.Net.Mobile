@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+#if WINDOWS_UWP
 using Windows.UI.Xaml.Media.Imaging;
+#else
+using Microsoft.UI.Xaml.Media.Imaging;
+#endif
 
 namespace ZXing.Mobile
 {

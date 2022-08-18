@@ -20,6 +20,12 @@ using System.Windows;
 using Windows.UI;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
+#elif NET6_0
+using Windows.UI;
+using Windows.UI.Text;
+using Microsoft.UI;
+using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media.Imaging;
 #else
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -66,7 +72,7 @@ namespace ZXing.Mobile
 		/// </value>
 		public double FontSize { get; set; }
 
-#if !NETFX_CORE
+#if !NETFX_CORE && !NET6_0
         /// <summary>
         /// Gets or sets the font stretch.
         /// </summary>
@@ -90,7 +96,7 @@ namespace ZXing.Mobile
         public FontWeight FontWeight { get; set; }
 #endif
 
-		static readonly FontFamily DefaultFontFamily = new FontFamily("Arial");
+        static readonly FontFamily DefaultFontFamily = new FontFamily("Arial");
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="WriteableBitmapRenderer"/> class.
@@ -101,21 +107,21 @@ namespace ZXing.Mobile
 			Background = Colors.White;
 			FontFamily = DefaultFontFamily;
 			FontSize = 10.0;
-#if !NETFX_CORE
+#if !NETFX_CORE && !NET6_0
             FontStretch = FontStretches.Normal;
             FontStyle = FontStyles.Normal;
             FontWeight = FontWeights.Normal;
 #endif
-		}
+        }
 
-		/// <summary>
-		/// Renders the specified matrix.
-		/// </summary>
-		/// <param name="matrix">The matrix.</param>
-		/// <param name="format">The format.</param>
-		/// <param name="content">The content.</param>
-		/// <returns></returns>
-		public WriteableBitmap Render(BitMatrix matrix, BarcodeFormat format, string content)
+        /// <summary>
+        /// Renders the specified matrix.
+        /// </summary>
+        /// <param name="matrix">The matrix.</param>
+        /// <param name="format">The format.</param>
+        /// <param name="content">The content.</param>
+        /// <returns></returns>
+        public WriteableBitmap Render(BitMatrix matrix, BarcodeFormat format, string content)
 		{
 			return Render(matrix, format, content, null);
 		}
@@ -163,8 +169,8 @@ namespace ZXing.Mobile
 				}
 			}
 
-#if NETFX_CORE
-			var foreground = new byte[] { Foreground.B, Foreground.G, Foreground.R, Foreground.A };
+#if NETFX_CORE || NET6_0
+            var foreground = new byte[] { Foreground.B, Foreground.G, Foreground.R, Foreground.A };
 			var background = new byte[] { Background.B, Background.G, Background.R, Background.A };
 			var bmp = new WriteableBitmap(width, height);
 			var length = width * height;

@@ -1,7 +1,14 @@
 ﻿using System;
+#if NET6_0
+using Microsoft.Maui.Controls.Compatibility;
+using Microsoft.Maui.Controls.Compatibility.Platform.iOS;
+using Microsoft.Maui.Controls.Platform;
+#else
+using Xamarin.Essentials;
 using Xamarin.Forms;
-using ZXing.Net.Mobile.Forms;
 using Xamarin.Forms.Platform.iOS;
+#endif
+using ZXing.Net.Mobile.Forms;
 using System.ComponentModel;
 using System.Reflection;
 using Foundation;
@@ -11,7 +18,9 @@ using UIKit;
 [assembly: ExportRenderer(typeof(ZXingScannerView), typeof(ZXingScannerViewRenderer))]
 namespace ZXing.Net.Mobile.Forms.iOS
 {
+#if !NET6_0
 	[Preserve(AllMembers = true)]
+#endif
 	public class ZXingScannerViewRenderer : ViewRenderer<ZXingScannerView, ZXing.Mobile.ZXingScannerView>
 	{
 		// No-op to be called from app to prevent linker from stripping this out    
@@ -44,8 +53,8 @@ namespace ZXing.Net.Mobile.Forms.iOS
 					}
 				};
 
-				var cameraPermission = await Xamarin.Essentials.Permissions.RequestAsync<Xamarin.Essentials.Permissions.Camera>();
-				if (cameraPermission != Xamarin.Essentials.PermissionStatus.Granted)
+				var cameraPermission = await Permissions.RequestAsync<Permissions.Camera>();
+				if (cameraPermission != PermissionStatus.Granted)
 				{
 					Console.WriteLine("Missing Camera Permission");
 					return;

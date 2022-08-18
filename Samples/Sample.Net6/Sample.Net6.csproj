@@ -1,0 +1,96 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net6.0-android;net6.0-ios</TargetFrameworks>
+		<OutputType>Exe</OutputType>
+		<UseMaui>true</UseMaui>
+		<!--<UseMauiEssentials>true</UseMauiEssentials>-->
+		<SingleProject>true</SingleProject>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+
+		<RootNamespace>Sample.Net6</RootNamespace>
+		<AssemblyName>ZXingSampleNet6</AssemblyName>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="ZXing.Net" Version="0.16.8" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(TargetFramework.StartsWith('net6.0-android')) == true">
+		<PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.4.2.1" />
+		<PackageReference Include="FastAndroidCamera" Version="2.0.0" />
+		<PackageReference Include="Xamarin.AndroidX.Browser">
+			<Version>1.4.0.2</Version>
+		</PackageReference>
+	</ItemGroup>
+
+	<ItemGroup Condition="$(TargetFramework.StartsWith('net6.0-ios')) == true">
+		<None Include="Info.plist" />
+		<InterfaceDefinition Include="LaunchScreen.xib" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(TargetFramework.StartsWith('net6.0-android')) == true">
+		<Compile Include="..\Sample.Android\FragmentActivity.cs" Link="Platforms\Android\FragmentActivity.cs" />
+		<Compile Include="..\Sample.Android\ImageActivity.cs" Link="Platforms\Android\ImageActivity.cs" />
+		<Compile Include="..\Sample.Android\MainActivity.cs" Link="Platforms\Android\MainActivity.cs" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(TargetFramework.StartsWith('net6.0-ios')) == true">
+	  <Compile Include="..\Sample.iOS\AppDelegate.cs" Link="Platforms\iOS\AppDelegate.cs" />
+	  <Compile Include="..\Sample.iOS\CustomOverlayView.cs" Link="Platforms\iOS\CustomOverlayView.cs" />
+	  <Compile Include="..\Sample.iOS\HomeViewController.cs" Link="Platforms\iOS\HomeViewController.cs" />
+	  <Compile Include="..\Sample.iOS\ImageViewController.cs" Link="Platforms\iOS\ImageViewController.cs" />
+	  <Compile Include="..\Sample.iOS\Main.cs" Link="Platforms\iOS\Main.cs" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(TargetFramework.StartsWith('net6.0-android')) == true">
+		<AndroidResource Include="..\Sample.Android\Resources\drawable-hdpi\launcher.png" Link="Platforms\Android\Resources\drawable-hdpi\launcher.png" />
+		<AndroidResource Include="..\Sample.Android\Resources\drawable-mdpi\launcher.png" Link="Platforms\Android\Resources\drawable-mdpi\launcher.png" />
+		<AndroidResource Include="..\Sample.Android\Resources\drawable-xhdpi\launcher.png" Link="Platforms\Android\Resources\drawable-xhdpi\launcher.png" />
+		<AndroidResource Include="..\Sample.Android\Resources\drawable-xxhdpi\launcher.png" Link="Platforms\Android\Resources\drawable-xxhdpi\launcher.png" />
+		<AndroidResource Include="..\Sample.Android\Resources\drawable-xxxhdpi\launcher.png" Link="Platforms\Android\Resources\drawable-xxxhdpi\launcher.png" />
+		<AndroidResource Include="..\Sample.Android\Resources\values\Strings.xml" Link="Platforms\Android\Resources\values\Strings.xml" />
+	  <AndroidResource Include="..\Sample.Android\Resources\layout\FragmentActivity.axml" Link="Platforms\Android\Resources\layout\FragmentActivity.axml" />
+	  <AndroidResource Include="..\Sample.Android\Resources\layout\ImageActivity.axml" Link="Platforms\Android\Resources\layout\ImageActivity.axml" />
+	  <AndroidResource Include="..\Sample.Android\Resources\layout\Main.axml" Link="Platforms\Android\Resources\layout\Main.axml" />
+	  <AndroidResource Include="..\Sample.Android\Resources\layout\ZxingOverlay.axml" Link="Platforms\Android\Resources\layout\ZxingOverlay.axml" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(TargetFramework.StartsWith('net6.0-ios')) == true">
+	  <BundleResource Include="..\Sample.iOS\Resources\Icon.png" Link="Platforms\iOS\Resources\Icon.png" />
+	  <BundleResource Include="..\Sample.iOS\Resources\Icon@2x.png" Link="Platforms\iOS\Resources\Icon%402x.png" />
+	  <ImageAsset Include="..\Sample.iOS\Resources\Images.xcassets\AppIcons.appiconset\Contents.json" Link="Platforms\iOS\Resources\Images.xcassets\AppIcons.appiconset\Contents.json" />
+	  <ImageAsset Include="..\Sample.iOS\Resources\Images.xcassets\AppIcons.appiconset\Icon-40.png" Link="Platforms\iOS\Resources\Images.xcassets\AppIcons.appiconset\Icon-40.png" />
+	  <ImageAsset Include="..\Sample.iOS\Resources\Images.xcassets\AppIcons.appiconset\Icon-40@2x.png" Link="Platforms\iOS\Resources\Images.xcassets\AppIcons.appiconset\Icon-40%402x.png" />
+	  <ImageAsset Include="..\Sample.iOS\Resources\Images.xcassets\AppIcons.appiconset\Icon-40@3x.png" Link="Platforms\iOS\Resources\Images.xcassets\AppIcons.appiconset\Icon-40%403x.png" />
+	  <ImageAsset Include="..\Sample.iOS\Resources\Images.xcassets\AppIcons.appiconset\Icon-60@2x.png" Link="Platforms\iOS\Resources\Images.xcassets\AppIcons.appiconset\Icon-60%402x.png" />
+	  <ImageAsset Include="..\Sample.iOS\Resources\Images.xcassets\AppIcons.appiconset\Icon-60@3x.png" Link="Platforms\iOS\Resources\Images.xcassets\AppIcons.appiconset\Icon-60%403x.png" />
+	  <ImageAsset Include="..\Sample.iOS\Resources\Images.xcassets\AppIcons.appiconset\Icon-76.png" Link="Platforms\iOS\Resources\Images.xcassets\AppIcons.appiconset\Icon-76.png" />
+	  <ImageAsset Include="..\Sample.iOS\Resources\Images.xcassets\AppIcons.appiconset\Icon-76@2x.png" Link="Platforms\iOS\Resources\Images.xcassets\AppIcons.appiconset\Icon-76%402x.png" />
+	  <ImageAsset Include="..\Sample.iOS\Resources\Images.xcassets\AppIcons.appiconset\Icon-83.5@2x.png" Link="Platforms\iOS\Resources\Images.xcassets\AppIcons.appiconset\Icon-83.5%402x.png" />
+	  <ImageAsset Include="..\Sample.iOS\Resources\Images.xcassets\AppIcons.appiconset\Icon-Small.png" Link="Platforms\iOS\Resources\Images.xcassets\AppIcons.appiconset\Icon-Small.png" />
+	  <ImageAsset Include="..\Sample.iOS\Resources\Images.xcassets\AppIcons.appiconset\Icon-Small@2x.png" Link="Platforms\iOS\Resources\Images.xcassets\AppIcons.appiconset\Icon-Small%402x.png" />
+	  <ImageAsset Include="..\Sample.iOS\Resources\Images.xcassets\AppIcons.appiconset\Icon-Small@3x.png" Link="Platforms\iOS\Resources\Images.xcassets\AppIcons.appiconset\Icon-Small%403x.png" />
+	  <ImageAsset Include="..\Sample.iOS\Resources\Images.xcassets\LaunchImage.launchimage\Contents.json" Link="Platforms\iOS\Resources\Images.xcassets\LaunchImage.launchimage\Contents.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Platforms\Android\Resources\layout\" />
+	  <Folder Include="Platforms\Android\Resources\drawable-hdpi\" />
+	  <Folder Include="Platforms\Android\Resources\drawable-mdpi\" />
+	  <Folder Include="Platforms\Android\Resources\drawable-xhdpi\" />
+	  <Folder Include="Platforms\Android\Resources\drawable-xxhdpi\" />
+	  <Folder Include="Platforms\Android\Resources\drawable-xxxhdpi\" />
+	  <Folder Include="Platforms\Android\Resources\values\" />
+	  <Folder Include="Platforms\iOS\Resources\Images.xcassets\AppIcons.appiconset\" />
+	  <Folder Include="Platforms\iOS\Resources\Images.xcassets\LaunchImage.launchimage\" />
+	  <Folder Include="Platforms\MacCatalyst\" />
+	  <Folder Include="Platforms\Tizen\" />
+	  <Folder Include="Platforms\Windows\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\ZXing.Net6.Mobile\ZXing.Net6.Mobile.csproj" />
+	</ItemGroup>
+</Project>
