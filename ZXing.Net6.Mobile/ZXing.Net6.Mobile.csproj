@@ -30,9 +30,9 @@
 			See https://github.com/Redth/ZXing.Net.Mobile/releases for release notes.
 		</Description>
 		<Product>$(AssemblyName) ($(TargetFramework))</Product>
-		<AssemblyVersion>3.0.0.0</AssemblyVersion>
-		<AssemblyFileVersion>3.0.0.0</AssemblyFileVersion>
-		<Version>3.0.0</Version>
+		<AssemblyVersion>3.2.0.0</AssemblyVersion>
+		<AssemblyFileVersion>3.2.0.0</AssemblyFileVersion>
+		<Version>3.2.0</Version>
 		<PackageVersion>$(Version)$(VersionSuffix)</PackageVersion>
 		<Authors>Redth</Authors>
 		<Owners>Redth</Owners>
@@ -47,6 +47,14 @@
 		<DebugType>portable</DebugType>
 		<Configurations>Debug;Release</Configurations>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+
+		<!--Include for local testing-->
+		<!--<NoPackageAnalysis>true</NoPackageAnalysis>-->
+		<!--<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<IncludeBuildOutput>true</IncludeBuildOutput>-->
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)'=='Debug' ">
 		<DebugSymbols>true</DebugSymbols>
@@ -150,6 +158,9 @@
 			<Generator>MSBuild:Compile</Generator>
 			<Link>Windows\ScanPage.xaml</Link>
 		</Page>
+		<None Update="Windows\ZXingScannerControl.winui.xaml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="iOS\Sub\" />
