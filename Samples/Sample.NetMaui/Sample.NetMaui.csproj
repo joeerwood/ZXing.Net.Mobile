@@ -4,7 +4,7 @@
 		<TargetFrameworks>net6.0-android;net6.0-ios</TargetFrameworks>
 		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net6.0-windows10.0.19041.0</TargetFrameworks>
 		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
-		 <TargetFrameworks>$(TargetFrameworks);net6.0-tizen</TargetFrameworks> 
+		<!--<TargetFrameworks>$(TargetFrameworks);net6.0-tizen</TargetFrameworks>--> 
 		<OutputType>Exe</OutputType>
 		<RootNamespace>Sample.NetMaui</RootNamespace>
 		<UseMaui>true</UseMaui>
@@ -70,9 +70,9 @@
 		<None Include="..\..\Samples\Sample.Forms\Sample.Forms.iOS\Resources\LaunchScreen.storyboard" Link="Platforms\iOS\Resources\LaunchScreen.storyboard" />
 	</ItemGroup>
 	
-	<ItemGroup Condition="$(TargetFramework.Contains('-tizen')) == true ">
+	<!--<ItemGroup Condition="$(TargetFramework.Contains('-tizen')) == true ">
 		<Content Include="..\..\Samples\Sample.Forms\Sample.Forms.Tizen\shared\res\FormsSample.Tizen.png" Link="Platforms\Tizen\shared\res\FormsSample.Tizen.png" />
-	</ItemGroup>
+	</ItemGroup>-->
 
 	<ItemGroup Condition="$(TargetFramework.Contains('-windows')) == true ">
 	</ItemGroup>
