@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using ZXing;
+using ZXing.SkiaSharp;
 
 namespace ZXing.Mobile
 {
@@ -58,9 +59,9 @@ namespace ZXing.Mobile
 			get { return new MobileBarcodeScanningOptions(); }
 		}
 
-		public BarcodeReaderGeneric BuildBarcodeReader()
+		public BarcodeReader BuildBarcodeReader()
 		{
-			var reader = new BarcodeReaderGeneric();
+			var reader = new BarcodeReader();
 			if (TryHarder.HasValue)
 				reader.Options.TryHarder = TryHarder.Value;
 			if (PureBarcode.HasValue)

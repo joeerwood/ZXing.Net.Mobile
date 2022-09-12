@@ -61,6 +61,7 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="ZXing.Net" Version="0.16.8" />
+		<PackageReference Include="ZXing.Net.Bindings.SkiaSharp" Version="0.16.12" />
 	</ItemGroup>
 	<ItemGroup>
 		<None Include="..\Art\ZXing.Net.Mobile-Icon.png" PackagePath="icon.png" Pack="true" />

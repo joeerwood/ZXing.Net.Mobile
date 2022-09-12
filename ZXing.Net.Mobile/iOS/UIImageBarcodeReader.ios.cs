@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using UIKit;
 using ZXing.Mobile;
+using ZXing.SkiaSharp;
 
 namespace ZXing.Mobile
 {

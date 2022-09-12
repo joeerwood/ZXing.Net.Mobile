@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Android.Views;
 using ApxLabs.FastAndroidCamera;
+using ZXing.SkiaSharp;
 
 namespace ZXing.Mobile.CameraAccess
 {
@@ -13,7 +14,7 @@ namespace ZXing.Mobile.CameraAccess
 		DateTime lastPreviewAnalysis = DateTime.UtcNow;
 		bool wasScanned;
 		readonly IScannerSessionHost scannerHost;
-		BarcodeReaderGeneric barcodeReader;
+		BarcodeReader barcodeReader;
 
 		public CameraAnalyzer(SurfaceView surfaceView, IScannerSessionHost scannerHost)
 		{
