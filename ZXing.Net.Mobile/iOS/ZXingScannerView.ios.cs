@@ -1,7 +1,6 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -325,10 +324,10 @@ namespace ZXing.Mobile
 				}
 
 				if (captureDevice.FocusPointOfInterestSupported)
-					captureDevice.FocusPointOfInterest = new PointF(0.5f, 0.5f);
+					captureDevice.FocusPointOfInterest = new CGPoint(0.5f, 0.5f);
 
 				if (captureDevice.ExposurePointOfInterestSupported)
-					captureDevice.ExposurePointOfInterest = new PointF(0.5f, 0.5f);
+					captureDevice.ExposurePointOfInterest = new CGPoint(0.5f, 0.5f);
 
 				captureDevice.UnlockForConfiguration();
 			}
@@ -376,7 +375,7 @@ namespace ZXing.Mobile
 			}
 		}
 
-		public void Focus(PointF pointOfInterest)
+		public void Focus(CGPoint pointOfInterest)
 		{
             //Get the device
 #if NET6_0
