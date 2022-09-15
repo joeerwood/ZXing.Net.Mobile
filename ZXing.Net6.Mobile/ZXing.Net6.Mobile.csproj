@@ -60,7 +60,6 @@
 		<DebugSymbols>true</DebugSymbols>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="ZXing.Net" Version="0.16.8" />
 		<PackageReference Include="ZXing.Net.Bindings.SkiaSharp" Version="0.16.12" />
 	</ItemGroup>
 	<ItemGroup>

@@ -13,10 +13,6 @@
 		<AssemblyName>ZXingSampleNet6</AssemblyName>
 	</PropertyGroup>
 
-	<ItemGroup>
-		<PackageReference Include="ZXing.Net" Version="0.16.8" />
-	</ItemGroup>
-
 	<ItemGroup Condition="$(TargetFramework.StartsWith('net6.0-android')) == true">
 		<PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.4.2.1" />
 		<PackageReference Include="FastAndroidCamera" Version="2.0.0" />
