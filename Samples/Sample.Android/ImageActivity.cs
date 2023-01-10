@@ -10,6 +10,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using ZXing.SkiaSharp;
 
 #if NET6_0
 namespace Sample.Net6
@@ -30,7 +31,7 @@ namespace Sample.Android
 
 			imageBarcode = FindViewById<ImageView>(Resource.Id.imageBarcode);
 
-			var barcodeWriter = new ZXing.Mobile.BarcodeWriter
+			var barcodeWriter = new BarcodeWriter
 			{
 				Format = ZXing.BarcodeFormat.QR_CODE,
 				Options = new ZXing.Common.EncodingOptions
